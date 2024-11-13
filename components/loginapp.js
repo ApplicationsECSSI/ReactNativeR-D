@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+// LoginApp.js (for mobile)
+import React from 'react';
 import {
   View,
   TextInput,
@@ -11,26 +12,20 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import 'react-native-gesture-handler';
+import { useLoginLogic } from '../src/login';
 
-const LoginScreen = () => {
-  const [email, setEmail] = useState(''); // email state
-  const [password, setPassword] = useState(''); // password state
 
-  const handleLogin = () => {
-    if (!email || !password) {
-      Alert.alert('Error', 'Please fill in all fields');
-      return;
-    }
-    Alert.alert('Success', 'Logged in!');
-  };
+
+const LoginApp = () => {
+  const { email, password, setEmail, setPassword, handleLogin } = useLoginLogic();
 
   return (
     <ImageBackground
-      source={require('../assets/images/login.jpg')}
+      source={require('../assets/images/loginapp.png')}
       style={styles.container}
       resizeMode="cover"
     >
-      <Image source={require('../assets/images/login-logo.png')} style={styles.logoImage} />
+      <Image source={require('../assets/images/applogo.png')} style={styles.logoImage} resizeMode="contain"/>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -49,15 +44,12 @@ const LoginScreen = () => {
         />
       </View>
       <View style={styles.rememberContainer}>
-        <Image
-          style={styles.checkboxImage}
-          source={require('../assets/images/uncheck.png')}
-        />
         <Text style={styles.rememberText}>Remember Me</Text>
       </View>
-      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
+          <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+      <Text style={styles.buttonText}>Login</Text>
+    </TouchableOpacity>
+
     </ImageBackground>
   );
 };
@@ -69,8 +61,8 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   logoImage: {
-    width: 310,
-    height: 145,
+    width: 200,
+    height: 100,
     marginBottom: 16,
     alignSelf: 'center',    
   },
@@ -80,7 +72,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    width: '20%',
+    width: '60%',
     //borderColor: 'gray',
     //borderWidth: 1,
     marginBottom: 12,
@@ -93,12 +85,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 16,
-    paddingLeft: '40%',
-  },
-  checkboxImage: {
-    width: 20,
-    height: 20,
-    marginRight: 8,
+    paddingLeft: '25%',
   },
   rememberText: {
     fontSize: 14,
@@ -108,7 +95,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderRadius: 40,
-    width: '20%',
+    width: '60%',
     alignSelf: 'center',
     marginTop: 16,
   },
@@ -119,4 +106,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default LoginApp;

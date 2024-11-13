@@ -1,13 +1,16 @@
-// App.js
 import React from 'react';
+import { Platform, StyleSheet, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import LoginScreen from './screens/LoginScreen.js'; // Import the login screen
+import LoginApp from './components/loginapp'; 
+import LoginWeb from './components/loginweb'; 
 
 export default function App() {
+ 
+  const isWeb = Platform.OS === 'web';
+
   return (
     <View style={styles.container}>
-      <LoginScreen />
+      {isWeb ? <LoginWeb /> : <LoginApp />}
       <StatusBar style="auto" />
     </View>
   );
@@ -17,7 +20,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    padding: 16,
   },
 });
-
