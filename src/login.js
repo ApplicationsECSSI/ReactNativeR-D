@@ -1,10 +1,13 @@
 
 import React, { useState } from 'react';
 import { Alert, Platform } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; 
+
 
 export const useLoginLogic = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigation = useNavigation();
 
   const handleLogin = () => {
     if (!email || !password) {
@@ -21,6 +24,9 @@ export const useLoginLogic = () => {
     } else {
       Alert.alert('Success', 'Logged in!');
     }
+    
+    navigation.navigate('DashBoard'); 
+ 
   };
   
   return {
